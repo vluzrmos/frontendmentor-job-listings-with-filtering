@@ -1,11 +1,11 @@
 <script setup>
-const {closeable} = defineProps({closeable: Boolean, default: false})
+const {closeable, active} = defineProps({closeable: Boolean, active: Boolean})
 
 const emit = defineEmits(['click', 'close'])
 </script>
 
 <template>
-    <div class="language_button" :class="{'language_button--closeable': closeable}">
+    <div class="language_button" :class="{'language_button--closeable': closeable, 'active': active}">
         <a href="#" @click.prevent="emit('click')" >
             <slot/>
         </a>

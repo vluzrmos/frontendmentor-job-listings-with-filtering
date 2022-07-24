@@ -1,15 +1,11 @@
 <script setup>
-import Badge from "./Badge.vue";
-import LanguageButton from "./LanguageButton.vue";
+import Badge from "@/components/Badge.vue";
+import LanguageButton from "@/components/LanguageButton.vue";
+import { useLanguages } from "@/composition/useLanguages";
+
+const { languages, toggle: languageSelected } = useLanguages();
 
 const props = defineProps({ item: Object });
-
-const emit = defineEmits(["language-selected"]);
-
-const languageSelected = (language) => {
-  emit("language-selected", language);
-};
-
 </script>
 <template>
   <div
@@ -43,6 +39,7 @@ const languageSelected = (language) => {
           v-for="language in [item.role, item.level, ...item.languages]"
           :key="language"
           @click="languageSelected(language)"
+          :active="languages.includes(language)"
         >{{language}}</LanguageButton>
       </div>
     </div>
